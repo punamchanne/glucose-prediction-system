@@ -12,30 +12,45 @@ DB_FILE = 'data/users.db'
 
 # Initialize Model
 model = None
-if os.path.exists(MODEL_FILE):
-    model = joblib.load(MODEL_FILE)
+def load_model():
+    global model
+    try:
+        if os.path.exists(MODEL_FILE):
+            model = joblib.load(MODEL_FILE)
+            print("✅ Model loaded successfully")
+        else:
+            print("⚠️ Model file not found")
+    except Exception as e:
+        print(f"❌ Error loading model: {e}")
 
 # Setup Simple User DB (SQLite)
 def init_db():
-    if not os.path.exists('data'):
-        os.makedirs('data')
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS users 
-                     (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)''')
-    cursor.execute('''CREATE TABLE IF NOT EXISTS history 
-                     (id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                      user_id INTEGER, 
-                      acetone REAL, 
-                      temp REAL, 
-                      humidity REAL, 
-                      prediction REAL, 
-                      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                      FOREIGN KEY(user_id) REFERENCES users(id))''')
-    conn.commit()
-    conn.close()
+    try:
+        if not os.path.exists('data'):
+            os.makedirs('data', exist_ok=True)
+            print("📁 Data folder initialized")
+        
+        conn = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
+        cursor.execute('''CREATE TABLE IF NOT EXISTS users 
+                         (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)''')
+        cursor.execute('''CREATE TABLE IF NOT EXISTS history 
+                         (id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                          user_id INTEGER, 
+                          acetone REAL, 
+                          temp REAL, 
+                          humidity REAL, 
+                          prediction REAL, 
+                          timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                          FOREIGN KEY(user_id) REFERENCES users(id))''')
+        conn.commit()
+        conn.close()
+        print("✅ DB initialized")
+    except Exception as e:
+        print(f"❌ DB Init error: {e}")
 
 init_db()
+load_model()
 
 # --- Routes ---
 
