@@ -181,6 +181,11 @@ def fetch_sensor_data():
     except Exception as e:
         return jsonify({'error': f"Failed to connect to {sensor_ip}: {str(e)}"}), 500
 
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('landing'))
+
 if __name__ == '__main__':
     print("🚀 Starting GlucoBreath Enterprise Web App...")
     app.run(debug=True, port=5000)
