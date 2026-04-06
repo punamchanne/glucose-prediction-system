@@ -1,0 +1,70 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #a855f7;
+    --accent: #22d3ee;
+    --bg: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #10b981;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+
+body {
+    background-color: var(--bg);
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+        radial-gradient(at 100% 100%, hsla(339,49%,30%,1) 0, transparent 50%);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* Glassmorphism Classes */
+.glass-container {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white; border: none; border-radius: 12px;
+    padding: 14px 28px; font-weight: 700; cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none; display: inline-block;
+}
+
+.btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.5); }
+
+/* Form Styles */
+.form-group { margin-bottom: 20px; }
+label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.9rem; }
+input { 
+    width: 100%; padding: 14px; background: rgba(15, 23, 42, 0.6); 
+    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; 
+    color: var(--text);
+}
+input:focus { outline: none; border-color: var(--primary); }
+
+/* Landing Layout */
+.landing-hero {
+    height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 20px;
+}
+h1.hero-title { font-size: 4rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+p.hero-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; }
+
+/* Navbar */
+nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 30px 10%; position: absolute; width: 100%;
+}
+.logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+.nav-links a { margin-left: 30px; text-decoration: none; color: var(--text); font-weight: 600; opacity: 0.8; transition: 0.3s; }
+.nav-links a:hover { opacity: 1; color: var(--primary); }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlucoBreath – AI Breath-Based Glucose Monitoring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .hero-title {
+            animation: fadeInDown 0.8s backwards;
+        }
+        .hero-subtitle {
+            animation: fadeInUp 0.8s 0.2s backwards;
+        }
+        .hero-btns {
+            animation: zoomIn 0.5s 0.4s backwards;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">GlucoBreath AI</div>
+        <div class="nav-links">
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}" class="btn-primary">Register Free</a>
+        </div>
+    </nav>
+
+    <main class="landing-hero">
+        <h1 class="hero-title">Predict Glucose with One Breath.</h1>
+        <p class="hero-subtitle">Experience the future of non-invasive healthcare. Our AI-powered system monitors breath acetone to predict blood sugar levels with up to 98% accuracy.</p>
+        <div class="hero-btns">
+            <a href="{{ url_for('register') }}" class="btn-primary" style="padding: 18px 40px; font-size: 1.2rem;">Get Started Today</a>
+        </div>
+        
+        <div style="margin-top: 50px; display: flex; gap: 40px; justify-content: center; opacity: 0.6;">
+            <span>🔬 Clinically Inspired</span>
+            <span>📱 Real-time Analysis</span>
+            <span>📡 IoT Integrated</span>
+        </div>
+    </main>
+</body>
+</html>
